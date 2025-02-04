@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AssemblyScript Test</title>
+</head>
+<body>
+    <h1>AssemblyScript Test</h1>
+    <div id="output"></div>
+
+    <script type="module">
+        import loader from "./node_modules/@assemblyscript/loader/index.js";
+        const output = document.getElementById('output');
+        
+        function multiplyTimes(a, b) {
+            let result = 0;
+            for (let i = 0; i < b; i++) {
+                result += a;
+            }
+            return result;
+        }
+
+        async function loadWasm() {
+            try {
+                // Use loader instead of WebAssembly.instantiate
+                const imports = {};
+                const wasmModule = await loader.instantiate(
+                    fetch('build/release.wasm'),
+                    imports
+                );
+                const instance = wasmModule.exports;
+
+                // Test add function
+                const addResult = instance.add(5, 3);
+                output.innerHTML += `<p>5 + 3 = ${addResult}</p>`;
+
+                // Test fibonacci function
+                const fibResult = instance.fibonacci(10);
+                output.innerHTML += `<p>fibonacci(10) = ${fibResult}</p>`;
+
+                let start = performance.now();
+                let result = instance.multiplyTimes(1, 1000000);
+                let end = performance.now();
+                output.innerHTML += `<p>WASM multipleTimes(1, 100000) = ${result}</p>`;
+                output.innerHTML += `<p>Time taken: ${end - start}ms</p>`;
+
+                start = performance.now();
+                result = multiplyTimes(1, 1000000);
+                end = performance.now();
+                output.innerHTML += `<p>JS multipleTimes(1, 100000) = ${result}</p>`;
+                output.innerHTML += `<p>Time taken: ${end - start}ms</p>`;
+            } catch (err) {
+                output.innerHTML = `<p style="color: red">Error: ${err.message}</p>`;
+                console.error(err);
+            }
+        }
+
+        loadWasm();
+    </script>
+</body>
+</html>
