@@ -1,7 +1,7 @@
 <div align="center">
   <img src="logo.png" alt="sandbox-assemblyscript" width="512"/>
 
-  **⚡ Sandbox for experimenting with AssemblyScript and WebAssembly**
+  **⚡ Sandbox for experimenting with AssemblyScript and WebAssembly 🕸️**
 
 </div>
 
