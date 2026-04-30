@@ -1,70 +1,47 @@
 <div align="center">
-  <img src="logo.png" alt="sandbox-assemblyscript" width="512"/>
+  <img src="./logo.png" alt="sandbox-assemblyscript" width="512" />
 
   **⚡ Sandbox for experimenting with AssemblyScript and WebAssembly 🕸️**
-
 </div>
 
-## Overview
+sandbox-assemblyscript is a small AssemblyScript project that compiles typed arithmetic functions to WebAssembly. It includes Node.js tests for the debug and release builds, plus a browser demo that compares JavaScript and WebAssembly timing.
 
-An AssemblyScript sandbox demonstrating WebAssembly functionality with basic arithmetic operations. Includes Node.js tests and a browser-based performance comparison between JavaScript and WebAssembly implementations.
+Use it as a minimal reference for compiling AssemblyScript, loading `.wasm` files from JavaScript, and checking the generated output in both Node.js and the browser.
 
-## Features
-
-- **Dual builds** - Debug (with `.wat` text format) and optimized release builds
-- **Node.js tests** - Verify both debug and release builds
-- **Browser demo** - Performance comparison JS vs WASM
-- **Benchmarking** - Uses `performance.now()` for accurate timing
-
-## Quick Start
+## Install
 
 ```bash
-# Clone and setup
 git clone https://github.com/tsilva/sandbox-assemblyscript.git
 cd sandbox-assemblyscript
-npm install
-
-# Build WebAssembly modules
-npm run asbuild
-
-# Run tests
-npm test
-
-# Serve browser demo
-npm run serve
+pnpm install
+pnpm run asbuild
+pnpm test
+pnpm run serve
 ```
 
-## Build Commands
+Open [http://localhost:3000](http://localhost:3000).
 
-| Command | Description |
-|---------|-------------|
-| `npm run asbuild` | Build both debug and release |
-| `npm run asbuild:debug` | Debug build only |
-| `npm run asbuild:release` | Release build only |
-| `npm test` | Run tests against both builds |
-| `npm run serve` | Start local server for browser demo |
+## Commands
 
-## Project Structure
-
-```
-sandbox-assemblyscript/
-├── assembly/
-│   └── index.ts          # AssemblyScript source
-├── build/
-│   ├── debug.wasm        # Debug build output
-│   └── release.wasm      # Release build output
-├── tests/
-│   └── index.js          # Node.js test suite
-├── index.html            # Browser performance demo
-├── asconfig.json         # AssemblyScript config
-└── package.json
+```bash
+pnpm run asbuild          # build debug and release WASM output
+pnpm run asbuild:debug    # build build/debug.wasm and build/debug.wat
+pnpm run asbuild:release  # build build/release.wasm and build/release.wat
+pnpm test                 # run Node.js assertions against both builds
+pnpm run serve            # serve index.html and local demo assets
 ```
 
-## Requirements
+## Notes
 
-- Node.js
-- npm
+- `package.json` enforces pnpm during install.
+- Run `pnpm run asbuild` before `pnpm test` or the browser demo so `build/*.wasm` exists.
+- `tests/index.js` loads WASM synchronously with `fs.readFileSync` and instantiates it with `@assemblyscript/loader`.
+- `index.html` imports `@assemblyscript/loader` from `node_modules`, so the demo should be opened through the local static server.
+
+## Architecture
+
+![sandbox-assemblyscript architecture](./architecture.png)
 
 ## License
 
-MIT
+[MIT](LICENSE)

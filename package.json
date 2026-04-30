@@ -2,13 +2,15 @@
   "name": "sandbox-assemblyscript",
   "version": "1.0.0",
   "description": "AssemblyScript sandbox project",
+  "packageManager": "pnpm@10.27.0",
   "main": "index.js",
   "scripts": {
+    "preinstall": "node -e \"const ua = process.env.npm_config_user_agent || ''; if (!ua.startsWith('pnpm/')) { console.error('Use pnpm for this repo.'); process.exit(1); }\"",
     "test": "node tests",
     "asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
-    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
-    "serve": "npx serve ."
+    "asbuild": "pnpm run asbuild:debug && pnpm run asbuild:release",
+    "serve": "pnpm exec serve ."
   },
   "dependencies": {
     "@assemblyscript/loader": "^0.28.9"
