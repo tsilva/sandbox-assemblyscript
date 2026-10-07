@@ -1,8 +1,10 @@
-<div align="center">
+<p align="center">
   <img src="./logo.png" alt="sandbox-assemblyscript" width="512" />
-
-  **⚡ Sandbox for experimenting with AssemblyScript and WebAssembly 🕸️**
-</div>
+  <br />
+  <!-- repo-tagline:start -->
+  <strong>⚡ Sandbox for experimenting with AssemblyScript and WebAssembly 🕸️</strong>
+  <!-- repo-tagline:end -->
+</p>
 
 sandbox-assemblyscript is a small AssemblyScript project that compiles typed arithmetic functions to WebAssembly. It includes Node.js tests for the debug and release builds, plus a browser demo that compares JavaScript and WebAssembly timing.
 
