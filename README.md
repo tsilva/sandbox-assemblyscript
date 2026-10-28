@@ -15,7 +15,7 @@ Use it as a minimal reference for compiling AssemblyScript, loading `.wasm` file
 ```bash
 git clone https://github.com/tsilva/sandbox-assemblyscript.git
 cd sandbox-assemblyscript
-pnpm install
+pnpm install --frozen-lockfile --ignore-scripts
 pnpm run asbuild
 pnpm test
 pnpm run serve
@@ -35,7 +35,9 @@ pnpm run serve            # serve index.html and local demo assets
 
 ## Notes
 
-- `package.json` enforces pnpm during install.
+- `package.json` pins pnpm 10.27.0; `pnpm-lock.yaml` records the dependency graph.
+- Installs keep lifecycle scripts disabled, enforce a seven-day release age, and block exotic transitive sources.
+- This sandbox runs from its WASM builds and browser page; it does not declare a Node package entry point.
 - Run `pnpm run asbuild` before `pnpm test` or the browser demo so `build/*.wasm` exists.
 - `tests/index.js` loads WASM synchronously with `fs.readFileSync` and instantiates it with `@assemblyscript/loader`.
 - `index.html` imports `@assemblyscript/loader` from `node_modules`, so the demo should be opened through the local static server.

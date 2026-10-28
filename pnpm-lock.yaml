@@ -1,0 +1,47 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@assemblyscript/loader':
+        specifier: ^0.28.9
+        version: 0.28.9
+    devDependencies:
+      assemblyscript:
+        specifier: ^0.28.9
+        version: 0.28.9
+
+packages:
+
+  '@assemblyscript/loader@0.28.9':
+    resolution: {integrity: sha512-otbSV8Nb3xEprQ7SUKxuluFvwcU7gSDgjSTRMoU3Ei9o8ACZoNV2B7IX2HOOXCOYuL9vzQGzK+ihsgldphET/A==}
+
+  assemblyscript@0.28.9:
+    resolution: {integrity: sha512-UQqIYSUuJzqQP6fKTs1CtanyxmnDk7K+Kmj/J67agimxDqxjdMnTF/y9rEHUBL+K/VIEV4QYu57RMrL5LwbAvw==}
+    engines: {node: '>=20', npm: '>=10'}
+    hasBin: true
+
+  binaryen@123.0.0-nightly.20250530:
+    resolution: {integrity: sha512-d1zPHBN5YlOd3Ff+OUxvVExuFeh8heSnqe+X3bjItFxGLvn4VGBKmrvv7pgy/cRhrIUGuPW138iaWfDhwjyDqg==}
+    hasBin: true
+
+  long@5.2.4:
+    resolution: {integrity: sha512-qtzLbJE8hq7VabR3mISmVGtoXP8KGc2Z/AT8OuqlYD7JTR3oqrgwdjnk07wpj1twXxYmgDXgoKVWUG/fReSzHg==}
+
+snapshots:
+
+  '@assemblyscript/loader@0.28.9': {}
+
+  assemblyscript@0.28.9:
+    dependencies:
+      binaryen: 123.0.0-nightly.20250530
+      long: 5.2.4
+
+  binaryen@123.0.0-nightly.20250530: {}
+
+  long@5.2.4: {}
