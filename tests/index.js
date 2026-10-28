@@ -31,4 +31,7 @@ async function runTests() {
     console.log("All tests passed! 🎉");
 }
 
-runTests().catch(console.error);
+runTests().catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+});
