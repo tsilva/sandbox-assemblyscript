@@ -42,6 +42,7 @@ pnpm run serve            # serve index.html and local demo assets
 - CI installs the frozen pnpm lock, builds both targets, verifies test failure propagation, runs the WASM assertions and audits dependencies.
 - `tests/index.js` loads WASM synchronously with `fs.readFileSync` and instantiates it with `@assemblyscript/loader`.
 - `index.html` imports `@assemblyscript/loader` from `node_modules`, so the demo should be opened through the local static server.
+- Secret scanning normally checks the push/PR commit range. If a rewritten push tip is unavailable in a full checkout, it scans all history reachable from the new tip; missing PR bases and shallow fallback histories still fail.
 
 ## Architecture
 
