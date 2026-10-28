@@ -1,3 +1,10 @@
+<!-- archive-repo:deprecation-notice:start -->
+> [!WARNING]
+> **Deprecated**
+>
+> The advent of agents has made AssemblyScript less relevant.
+<!-- archive-repo:deprecation-notice:end -->
+
 <p align="center">
   <img src="./logo.png" alt="sandbox-assemblyscript" width="512" />
   <br />
